@@ -1,4 +1,4 @@
-# mpl.py:
+# mlp.py:
 # COMP 472 Final Project
 # David Ambayec 40207617
 # November 24, 2025
