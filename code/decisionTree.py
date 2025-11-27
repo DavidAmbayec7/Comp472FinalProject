@@ -14,7 +14,7 @@ from sklearn.tree import DecisionTreeClassifier as DTC
 from metrics import metrics
 import os
 
-maxDepth = 5
+maxDepth = 50
 
 class dtcManual:
 
@@ -29,7 +29,7 @@ class dtcManual:
         if labels.size == 0:
             return 0.0
         
-        # Prompt: how to implement Gini formula
+        # LLM Prompt 4: how to implement Gini formula
         numCount = np.bincount(labels, minlength=self.numClasses)
         probs = numCount / labels.size
         return 1.0 - np.sum(probs * probs)
@@ -100,7 +100,7 @@ class dtcManual:
                 giniL = self.gini(labelLeft)
                 giniR = self.gini(labelRight)
 
-                # Prompt: how to calculate weighted Gini split:
+                # LLM Prompt 5: how to calculate weighted Gini split:
                 giniSplit = (labelLeft.size * giniL + labelRight.size * giniR) / numSamples
 
                 # If split is better, compute new best:
@@ -195,6 +195,7 @@ def main():
     sciDT = DTC(criterion="gini", max_depth=maxDepth)
     sciDT.fit(trainFeatures, trainLabels)
     sciPred = sciDT.predict(testFeatures)
+
     # Compute metrics with true and predicted values:
     metricsSK = metrics("Scikit Decision Tree Classifier", testLabels, sciPred, 10)
 

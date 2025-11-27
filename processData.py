@@ -26,7 +26,7 @@ def getDataset():
         transforms.ToTensor(),
         transforms.Normalize(
             mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225])  # Prompt: how to normalize...
+            std=[0.229, 0.224, 0.225])  # LLM Prompt 1: how to normalize CIFAR-10 dataset
     ])
 
     trainingSet = torchvision.datasets.CIFAR10(root='./dataset', train=True, download=True, transform=transf)
@@ -65,7 +65,7 @@ def storeImgs(currSet, numImgs):
 
 # Remove the final layerof ResNet-18:
 def makeFeatureExtractor(device):
-    # Prompt: how to remove final layer of ResNet-18 to get 512x1
+    # LLM Prompt 2: how to remove final layer of ResNet-18 to get 512x1
 
     wts = models.ResNet18_Weights.DEFAULT
     resnet = models.resnet18(weights=wts)
@@ -78,7 +78,7 @@ def makeFeatureExtractor(device):
 
 # Extracts 512x1 feature vectors:
 def extractFeatures(extractor, device, load):
-    # Prompt: how to extract 512x1
+    # LLM Prompt 3: how to extract 512x1
     featureList = []
     labelsList = []
 
